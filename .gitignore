@@ -34,7 +34,7 @@ Thumbs.db
 .Rproj.user
 
 # Vendored dependencies
-infostop/
+# infostop/
 
 # Internal
 .claude/
