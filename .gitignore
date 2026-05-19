@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data (too large for git)
+dbs/
+*.parquet
+*.gpkg
+*.pbf
+
+# Environment
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/*.html
+
+# OS
+.DS_Store
+Thumbs.db
+
+# R
+.Rhistory
+.Rproj.user
+
+# Vendored dependencies
+infostop/
+
+# Internal
+.claude/
+CLAUDE.md

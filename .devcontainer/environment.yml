@@ -1,0 +1,62 @@
+name: geoenv
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  # === Geospatial core ===
+  - geopandas
+  - shapely
+  - pyproj
+  - fiona
+  - rtree
+  - h3-py
+  - pyrosm
+  # === Data processing ===
+  - pandas
+  - numpy
+  - pyarrow
+  - pyspark
+  - polars
+  - duckdb
+  # === PySAL ecosystem (spatial analysis) ===
+  - libpysal
+  - esda
+  - spreg
+  - mgwr
+  - mapclassify
+  - splot
+  # === Statistics & ML ===
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - linearmodels
+  # === PyTorch & Geometric Deep Learning ===
+  # NOTE: Installed via pip in Dockerfile for reliable CUDA support
+  # === Visualization ===
+  - matplotlib
+  - seaborn
+  - plotly
+  - folium
+  - contextily
+  - ipywidgets
+  - jupyterlab_widgets
+  # === Jupyter ===
+  - jupyterlab
+  - nodejs
+  # === Utilities ===
+  - requests
+  - pyyaml
+  - tqdm
+  - networkx
+  - pip:
+      - osmnx
+      - git+https://github.com/Dewey-Data/deweydatapy.git
+      - census
+      - us
+      - tqdm_joblib
+      - p_tqdm
+      - HoWDe
+      - timezonefinder
+      - python-dotenv
+      - overturemaps

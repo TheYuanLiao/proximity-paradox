@@ -1,0 +1,144 @@
+# Unified POI Category Schema for Cross-Country Comparison
+#
+# Design principles:
+# 1. Categories must be comparable across countries
+# 2. Focus on venues relevant for social mixing analysis
+# 3. Exclude transit infrastructure (country-specific, separate data source)
+# 4. ~12 unified categories, extensible per country
+#
+# Adapted from: geo-social-mixing/config/unified_poi_categories.yaml
+
+unified_categories:
+
+  food_dining:
+    description: "Restaurants, cafes, bars, and food establishments"
+    includes:
+      - "Restaurants and Other Eating Places"
+      - "Drinking Places (Alcoholic Beverages)"
+      - "Bakeries and Tortilla Manufacturing"
+      - "Specialty Food Stores"
+      - "Grocery Stores"
+
+  retail_general:
+    description: "General merchandise and department stores"
+    includes:
+      - "General Merchandise Stores, including Warehouse Clubs and Supercenters"
+      - "Department Stores"
+      - "Other Miscellaneous Store Retailers"
+      - "Used Merchandise Stores"
+      - "Electronic Shopping and Mail-Order Houses"
+
+  retail_specialty:
+    description: "Clothing, electronics, home goods, specialty shops"
+    includes:
+      - "Clothing Stores"
+      - "Shoe Stores"
+      - "Electronics and Appliance Stores"
+      - "Home Furnishings Stores"
+      - "Furniture Stores"
+      - "Jewelry, Luggage, and Leather Goods Stores"
+      - "Sporting Goods, Hobby, and Musical Instrument Stores"
+      - "Office Supplies, Stationery, and Gift Stores"
+      - "Book Stores and News Dealers"
+      - "Beer, Wine, and Liquor Stores"
+      - "Lawn and Garden Equipment and Supplies Stores"
+      - "Building Material and Supplies Dealers"
+
+  personal_services:
+    description: "Personal care, dry cleaning, repair services"
+    includes:
+      - "Personal Care Services"
+      - "Drycleaning and Laundry Services"
+      - "Other Personal Services"
+      - "Personal and Household Goods Repair and Maintenance"
+
+  pharmacy_retail:
+    description: "Pharmacies, drug stores, health/personal care retail"
+    includes:
+      - "Health and Personal Care Stores"
+    excludes:
+      - "Offices of Physicians"
+      - "Offices of Dentists"
+      - "Offices of Other Health Practitioners"
+      - "General Medical and Surgical Hospitals"
+
+  entertainment_recreation:
+    description: "Movies, sports, parks, amusement, fitness"
+    includes:
+      - "Motion Picture and Video Industries"
+      - "Performing Arts Companies"
+      - "Spectator Sports"
+      - "Museums, Historical Sites, and Similar Institutions"
+      - "Amusement Parks and Arcades"
+      - "Other Amusement and Recreation Industries"
+      - "RV (Recreational Vehicle) Parks and Recreational Camps"
+      - "Gambling Industries"
+
+  accommodation_travel:
+    description: "Hotels, motels, travel services"
+    includes:
+      - "Traveler Accommodation"
+      - "Travel Arrangement and Reservation Services"
+      - "Scenic and Sightseeing Transportation, Water"
+      - "Scenic and Sightseeing Transportation, Land"
+
+  financial_services:
+    description: "Banks, credit unions, insurance, financial advisors"
+    includes:
+      - "Depository Credit Intermediation"
+      - "Nondepository Credit Intermediation"
+      - "Insurance Carriers"
+      - "Agencies, Brokerages, and Other Insurance Related Activities"
+
+  professional_services:
+    description: "Legal, accounting, consulting, tech services"
+    includes:
+      - "Legal Services"
+      - "Accounting, Tax Preparation, Bookkeeping, and Payroll Services"
+      - "Architectural, Engineering, and Related Services"
+      - "Computer Systems Design and Related Services"
+      - "Management, Scientific, and Technical Consulting Services"
+
+  automotive:
+    description: "Gas stations, auto dealers, repair shops"
+    includes:
+      - "Gasoline Stations"
+      - "Automobile Dealers"
+      - "Automotive Parts, Accessories, and Tire Stores"
+      - "Automotive Repair and Maintenance"
+
+  education_higher:
+    description: "Colleges, universities, vocational training"
+    includes:
+      - "Colleges, Universities, and Professional Schools"
+      - "Junior Colleges"
+      - "Technical and Trade Schools"
+      - "Other Schools and Instruction"
+    excludes:
+      - "Elementary and Secondary Schools"
+      - "Child Day Care Services"
+
+  civic_community:
+    description: "Religious, civic, government services"
+    includes:
+      - "Religious Organizations"
+      - "Civic and Social Organizations"
+      - "Social Advocacy Organizations"
+      - "Business, Professional, Labor, Political, and Similar Organizations"
+      - "Postal Service"
+
+excluded_categories:
+  k12_childcare:
+    reason: "US SafeGraph excludes K-12 schools and childcare (privacy)"
+  healthcare_providers:
+    reason: "US SafeGraph excludes healthcare provider visits (HIPAA)"
+  transit_infrastructure:
+    reason: "Country-specific; handled via GTFS/OSM network separately"
+  real_estate:
+    reason: "Office locations, not visitor destinations"
+  construction_industrial:
+    reason: "Workplace/industrial, not public social mixing venues"
+  warehousing_logistics:
+    reason: "Not public venues"
+  manufacturing:
+    reason: "Industrial facilities, not public venues"

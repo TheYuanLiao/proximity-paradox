@@ -1,0 +1,76 @@
+# config/default.yaml — global defaults for proximity-paradox pipeline
+
+# Step 0: Raw GPS to grouped Parquet
+device_logging:
+  n_groups: 50                # device groups (50 for Sweden, 300 for Germany)
+  hash_function: "md5"        # deterministic hash for group assignment
+
+# Step 1: Stop detection
+stop_detection:
+  r1: 30                    # meters (spatial clustering radius)
+  r2: 30                    # meters (secondary radius)
+  tmin: 15                  # minutes (minimum stay duration)
+  max_time_between: 3       # hours (max gap between pings in a stay)
+  engine: "infostop"
+  use_spark: true
+
+# Step 2: Home/work detection
+home_work:
+  algorithm: "HoWDe"
+  min_days_home: 3
+  night_hours: [22, 7]
+  range_window_home: 14     # days
+  range_window_work: 28     # days
+
+# Step 3: Home-building linkage
+buildings:
+  source: "overture_maps"
+  max_link_distance: 50     # meters
+  buffer_m: 50              # GPS uncertainty buffer
+
+# Step 4: Filtering
+filtering:
+  min_stops_per_device: 10
+  min_days_observed: 7
+  max_home_distance_km: 200
+
+# Step 6: POI assignment
+poi:
+  search_radius_m: 300
+  tiered_fallback: true
+  category_schema: "config/poi_categories.yaml"
+  tiers:
+    tier_1_m: 0             # inside building footprint
+    tier_2_m: 20            # high confidence
+    tier_3_m: 50            # medium confidence
+    tier_4_m: 100           # low confidence
+  chunk_size: 50000         # stops per processing chunk
+
+# Step 7: Isochrone parameters
+isochrone:
+  mode: "walking"
+  speed_kmh: 5.0
+  threshold_minutes: 15
+  backend: "r5r"            # "r5py", "r5r", or "openrouteservice"
+
+# Step 8: Rewiring parameters
+rewiring:
+  decay_function: "power"   # "power" or "exponential"
+  decay_beta: 1.5           # calibrate from observed data
+  seed: 42
+
+# Step 9: Segregation
+segregation:
+  metric: "ICE"
+
+# Step 5: IPW weighting
+ipw:
+  max_weight_cap: 10.0      # absolute cap
+  trimming: "van_de_kerckhove"  # trimming method
+  trimming_factor: 3.5      # w0 = sqrt(CV^2 + 1) * factor * median
+
+# Spark configuration
+spark:
+  driver_memory: "56g"
+  executor_memory: "8g"
+  cores: 18

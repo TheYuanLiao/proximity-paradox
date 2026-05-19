@@ -1,0 +1,27 @@
+{
+  "name": "geo-social-mixing",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspace",
+  "runArgs": ["--gpus", "all"],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "source=D:/foot_traffic_data,target=/data/foot_traffic,type=bind",
+    "source=D:\\MAD_dbs,target=/data/MAD_dbs,type=bind"
+  ],
+  "containerEnv": {
+    "JAVA_HOME": "/usr/lib/jvm/java-21-openjdk-amd64"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "micromamba run -n geoenv python -m pip install -U pip setuptools wheel && micromamba run -n geoenv python -m pip install -e /workspace/infostop"
+}

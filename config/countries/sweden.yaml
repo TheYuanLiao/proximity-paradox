@@ -1,0 +1,45 @@
+# config/countries/sweden.yaml
+
+country: "sweden"
+data_root: "D:/proximity-paradox"
+crs_projected: "EPSG:3006"  # SWEREF99 TM
+utc_offset_seconds: 3600    # CET+1
+
+# Socioeconomic data (Tier 1)
+socioeconomic:
+  tier: 1
+  zone_type: "deso"
+  grid_resolution: 250      # meters (SCB/SLU population grid)
+  group_variable: "birth_background"
+  group_values:
+    advantaged: "native_born"
+    disadvantaged: "foreign_born"
+  source: "scb"
+  variables:
+    - birth_background
+    - income_quartile
+    - education_level
+
+# POI data
+poi:
+  source: "safegraph"
+  fallback: "osm"
+
+# Raw GPS data
+raw_gps:
+  raw_dir: "/data/MAD_dbs/raw_data_se_24"           # raw CSV.gz archives
+  grouped_dir: "/data/MAD_dbs/raw_data_se_24/format_parquet"  # grouped Parquet output
+  n_groups: 50
+  path_template: "/data/MAD_dbs/raw_data_se_24/format_parquet/grp_{batch}"
+
+# Cities
+cities:
+  - name: "Stockholm"
+    bbox: [17.75, 59.20, 18.25, 59.45]
+    municipality_codes: ["0180"]
+  - name: "Gothenburg"
+    bbox: [11.80, 57.60, 12.10, 57.80]
+    municipality_codes: ["1480"]
+  - name: "Malmö"
+    bbox: [12.90, 55.53, 13.12, 55.64]
+    municipality_codes: ["1280"]
