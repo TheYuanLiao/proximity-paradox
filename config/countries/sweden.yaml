@@ -1,7 +1,7 @@
 # config/countries/sweden.yaml
 
 country: "sweden"
-data_root: "D:/proximity-paradox"
+data_root: "/lunarc/nobackup/projects/mobility/data"
 crs_projected: "EPSG:3006"  # SWEREF99 TM
 utc_offset_seconds: 3600    # CET+1
 
@@ -27,10 +27,10 @@ poi:
 
 # Raw GPS data
 raw_gps:
-  raw_dir: "/data/MAD_dbs/raw_data_se_24"           # raw CSV.gz archives
-  grouped_dir: "/data/MAD_dbs/raw_data_se_24/format_parquet"  # grouped Parquet output
+  raw_dir: "/lunarc/nobackup/projects/mobility/data/mobile/se_2024"
+  grouped_dir: "/lunarc/nobackup/projects/mobility/data/mobile/se_2024/format_parquet"
   n_groups: 50
-  path_template: "/data/MAD_dbs/raw_data_se_24/format_parquet/grp_{batch}"
+  path_template: "/lunarc/nobackup/projects/mobility/data/mobile/se_2024/format_parquet/grp_{batch}"
 
 # Cities
 cities:
